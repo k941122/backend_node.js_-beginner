@@ -1,26 +1,30 @@
 
 // express 를 이용한 서버 만들기! 
 
+"use strict";
+
 const express = require("express");
 const app = express();
+
+//포스트
+const PORT = 3000;
+
+//라우팅
+const home = require("./routes/home")
 
 // 앱세팅 
 app.set("views", "./views");
 app.set("view engine", "ejs");
 
-app.get('/',(req,res) => {
-    res.render("home/index");
-})
 
-app.get('/login',(req,res) => {
-    res.send("home/login");
-})
+app.use("/",home); //use -> 미들 웨어를 등록해 주는 메서드
 
-// npm install ejs => ejs 파일을 실행하기 위해 필요함
-
-app.listen(3000,() => {
+app.listen(PORT,() => {
     console.log("서버 가동");
 })
+
+
+
 
 /**
  * app.listen(3000,() =>< {}) 을 이용하면 서버가 만들어 진다.
