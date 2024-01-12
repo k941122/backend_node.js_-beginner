@@ -4,35 +4,19 @@
 const express = require("express");
 const app = express();
 
+// 앱세팅 
+app.set("views", "./views");
+app.set("view engine", "ejs");
+
 app.get('/',(req,res) => {
-    res.send(`<!DOCTYPE html>
-    <html lang="ko">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
-    </head>
-    <body>
-        여기는 루트입니다.
-    </body>
-    </html>`);
+    res.render("home/index");
 })
 
 app.get('/login',(req,res) => {
-    res.send(`<!DOCTYPE html>
-    <html lang="ko">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
-    </head>
-    <body>
-        <input type="text" placeholder = "아이디"><br>
-        <input type="text" placeholder = "아이디"><br>
-        <button>로그인</button>
-    </body>
-    </html>`);
+    res.send("home/login");
 })
+
+// npm install ejs => ejs 파일을 실행하기 위해 필요함
 
 app.listen(3000,() => {
     console.log("서버 가동");
@@ -57,6 +41,9 @@ app.listen(3000,() => {
  * 
  *  ※ 서버 포트 설정과 브라우저 리스폰드 를 이용해
  *     해당 페이지 불러오기를 진행했음
+ * 
+ * ejs 를 이용하면 js에 삽입된 html을 분리하여 관리함으로써 
+ * 더 효율적으로 코드 유지보수가 가능하다!
  */
 
 // ------------------------------------------------------------
