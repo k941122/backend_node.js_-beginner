@@ -3,14 +3,11 @@
 const express = require("express");
 const router = express.Router();
 
-router.get('/',(req,res) => {
-    res.render("home/index");
-})
+const strl = require("./home.ctrl");
 
-router.get('/login',(req,res) => {
-    res.send("home/login");
-})
-
+router.get('/', ctrl.home );
+router.get('/login', ctrl.login);
+// 컨트롤러 ctrl 이름과 ctrl 파일 내부의 상수 이름이 같아야 한다.
 module.exports = router;
 
 // npm install ejs => ejs 파일을 실행하기 위해 필요함
