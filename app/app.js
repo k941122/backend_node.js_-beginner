@@ -10,10 +10,10 @@ const app = express();
 const PORT = 3000;
 
 //라우팅
-const home = require("./home")
+const home = require("./src/routes/home");
 
 // 앱세팅 
-app.set("views", "./views");
+app.set("views", "./src/views");
 app.set("view engine", "ejs");
 
 
