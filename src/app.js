@@ -10,7 +10,7 @@ const app = express();
 const PORT = 3000;
 
 //라우팅
-const home = require("./routes/home")
+const home = require("./home")
 
 // 앱세팅 
 app.set("views", "./views");
