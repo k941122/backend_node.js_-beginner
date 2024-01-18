@@ -7,7 +7,7 @@ class User {
 
     async Login() {
         const client = this.body;
-        const (id, password) = await UserStorage.getUserInfo(client,id); // await는 promise를 반환하는 애 한테만 사용
+        const {id, password} = await UserStorage.getUserInfo(client,id); // await는 promise를 반환하는 애 한테만 사용
 
         if(id) {
             if (id === client.id && password === this.client.password){
@@ -18,9 +18,14 @@ class User {
         return {sucess: false, msg: "존재하지 않는 아이디입니다."}
     }
 
-    register() {
-        const client = this.body
-        UserStorage.save(this.body);
+    async register() {
+        const client = this.body;
+        .try {
+        const response = await UserStorage.save(this.body);
+        return response;
+        } catch(err) {
+            return {success: false, msg: err};
+        }
     }
 
 }
