@@ -5,6 +5,9 @@
 
 const express = require("express");
 const bodyParser = require("body-parser");
+const dotenv = require("dotenv"); //어떤 os에서 개발 하더라도 환경변수 가져올수 있음
+dotenv.config();
+
 const app = express();
 
 //포스트

@@ -7,7 +7,8 @@ class User {
 
     async Login() {
         const client = this.body;
-        const {id, password} = await UserStorage.getUserInfo(client,id); // await는 promise를 반환하는 애 한테만 사용
+        try{;
+        const {id,password} = await UserStorage.getUserInfo(client,id); // await는 promise를 반환하는 애 한테만 사용
 
         if(id) {
             if (id === client.id && password === this.client.password){
@@ -15,12 +16,15 @@ class User {
             }
             return {sucess:false, msg:"비밀번호가 틀렷습니다."};
         }
-        return {sucess: false, msg: "존재하지 않는 아이디입니다."}
+        return {sucess: false, msg: "존재하지 않는 아이디입니다."};
+    }catch(err) {
+        return success{success:false, msg: err};
+    };
     }
 
     async register() {
         const client = this.body;
-        .try {
+        try {
         const response = await UserStorage.save(this.body);
         return response;
         } catch(err) {
@@ -31,3 +35,12 @@ class User {
 }
 
 module.exports = User;
+
+/**
+ * 함수는 한가지 기능만 수행 하도록 구현
+ * 
+ * promise로 만들지 않으면 하나의 함수에서 여러 기능을 수행해 버리는
+ * "이도저도 아닌 코드"가 제작
+ * 
+ * 클래스(class)는 User와 UserStorage 처럼 각자의 역할을 구분해 줘야됨
+ */
