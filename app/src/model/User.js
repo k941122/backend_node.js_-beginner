@@ -6,6 +6,11 @@ class User {
     }
 
     async Login() {
+
+        function register () {
+            if(!id.value) return alert("아이디를 입력해주십시오.");
+            if (!password.value) return alert("비밀번호가 입력해주십시오.");
+
         const client = this.body;
         try{;
         const {id,password} = await UserStorage.getUserInfo(client,id); // await는 promise를 반환하는 애 한테만 사용
@@ -18,8 +23,8 @@ class User {
         }
         return {sucess: false, msg: "존재하지 않는 아이디입니다."};
     }catch(err) {
-        return success{success:false, msg: err};
-    };
+        return {success:false, err};
+    }
     }
 
     async register() {
@@ -28,7 +33,7 @@ class User {
         const response = await UserStorage.save(this.body);
         return response;
         } catch(err) {
-            return {success: false, msg: err};
+            return {success: false, err};
         }
     }
 

@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "morgan": "^1.10.0",
     "mysql": "^2.18.1",
     "winston": "^3.11.0"
   }
